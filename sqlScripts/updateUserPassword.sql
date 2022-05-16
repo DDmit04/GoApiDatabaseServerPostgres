@@ -1,0 +1,1 @@
+alter user {username} with password '{password}';
