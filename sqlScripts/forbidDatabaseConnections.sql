@@ -1,0 +1,1 @@
+revoke connect on database {name} from {name}

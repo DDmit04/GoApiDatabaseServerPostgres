@@ -1,2 +1,0 @@
-class DatabaseNotFoundException(Exception):
-    pass

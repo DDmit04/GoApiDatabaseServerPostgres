@@ -1,0 +1,38 @@
+syntax = "proto3";
+import "google/protobuf/struct.proto";
+option java_multiple_files = true;
+package com.common;
+
+message ResponseResult  {
+  bool result = 1;
+}
+
+message DatabaseIdRequest {
+  int32 dbId = 1;
+}
+
+message DatabaseIdPasswordRequest {
+  int32 dbId = 1;
+  string newPassword = 2;
+}
+
+message UpdateDatabaseSizeRequest {
+  int32 dbId = 1;
+  int64 newDatabaseSize = 2;
+}
+
+message SendQueryResponse {
+  google.protobuf.Struct data = 1;
+}
+message SendQueryRequest {
+  int32 dbId = 1;
+  string query = 2;
+}
+
+message DatabaseIdConnectionsAllowRequest{
+  int32 dbId = 1;
+  bool allow = 2;
+}
+
+
+message Empty {}

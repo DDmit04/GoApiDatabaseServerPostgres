@@ -1,2 +1,0 @@
-class InvalidDatabaseSizeException(Exception):
-    pass

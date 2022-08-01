@@ -1,0 +1,31 @@
+global:
+  is_dev_mode: True
+common:
+  name_length: 5
+  database_type: 'postgres'
+server:
+  self_grpc_port: 9091
+  self_url: 'localhost'
+  discover_server_url: 'localhost'
+  discover_server_port: 9090
+  stopping_server_wait_seconds: 3
+  server_service_name: 'DatabaseServerService'
+database:
+  schema:
+    protected_schema_name: 'private'
+    app_databases_table_name: 'database'
+    database_stats_table_name: 'database_stats'
+    database_service_table_name: 'database_service'
+  connection:
+    app: 'postgresql://app_user:pswd@postgres/app_db'
+    local: 'postgresql://postgres:ps@postgres'
+    echo: True
+  scripts:
+    scripts_folder: 'sqlScripts'
+    create_user_script_name: 'createUser.sql'
+    delete_user_script_name: 'deleteUser.sql'
+    target_init_db_script_name: 'initUserDb.sql'
+    target_update_user_password_script_name: 'updateUserPassword.sql'
+    target_create_db_triggers_script_name: 'createTriggersParameterized.sql'
+    target_allow_connections_script_name: 'allowDatabaseConnections.sql'
+    target_forbid_connections_script_name: 'forbidDatabaseConnections.sql'

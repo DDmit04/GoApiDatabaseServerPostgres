@@ -1,0 +1,1 @@
+grant connect on database {name} to {name}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+import "Common.proto";
+option java_multiple_files = true;
+package com.server;
+
+message CreateDatabaseOnServerRequest {
+  int64 size = 1;
+  int32 dbId = 2;
+  string password = 3;
+}
+
+message DatabaseStatsOnServerResponse {
+  int64 currentSize = 1;
+  float fillPercent = 2;
+  string databaseAndUsername = 3;
+  bool allowConnections = 4;
+}
+
+message CreateDatabaseResponse {
+  string databaseAndUsername = 1;
+}
+
+service DatabaseServerService {
+  rpc CreateDatabase(CreateDatabaseOnServerRequest) returns (CreateDatabaseResponse);
+  rpc DropDatabase(com.common.DatabaseIdRequest) returns (com.common.ResponseResult);
+  rpc ResetDatabase(com.common.DatabaseIdPasswordRequest) returns (CreateDatabaseResponse);
+  rpc UpdateDatabaseAllowConnections(com.common.DatabaseIdConnectionsAllowRequest) returns (com.common.ResponseResult);
+  rpc UpdateDatabasePassword(com.common.DatabaseIdPasswordRequest) returns (com.common.ResponseResult);
+  rpc UpdateDatabaseSize(com.common.UpdateDatabaseSizeRequest) returns (com.common.ResponseResult);
+  rpc GetDatabaseStats(com.common.DatabaseIdRequest) returns (DatabaseStatsOnServerResponse);
+  rpc SendQuery(com.common.SendQueryRequest) returns (com.common.SendQueryResponse);
+}
